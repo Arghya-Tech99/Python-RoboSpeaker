@@ -1,17 +1,30 @@
-import pyttsx3 # Library for Text-to-Speech(TTS) conversion
+import pyttsx3
 
-if __name__ == '__main__': # Python program starts execution from here
-    speaker = pyttsx3.init() # Initialize the TTS speaker
-    print("Welcome to RoboSpeaker1.1. Created by Arghya")
+def initialize_speaker():
+        engine = pyttsx3.init()
+        return engine
 
-    while True: # Speaker used as many times required; infinite while loop
-        x = input("Enter what you want me to speak : ") # Whatever is entered will be assigned to x
+if __name__ == '__main__':
+    speaker = initialize_speaker()
 
-        if x.lower() == "exit":
-            speaker.say("Thank you for using RoboSpeaker1.1")
-            speaker.runAndWait()
-            break
+    print("-" * 42)
+    print("Welcome to the Interactive Robo Speaker!")
+    print("   Type 'exit' to quit the program.")
+    print("-" * 42)
 
-        speaker.say(x)  # Use the speaker
-        speaker.runAndWait()  # Wait for the speech to finish
+    speaker.say("Robo Speaker is ready.")
+    speaker.runAndWait()
+
+    while True:
+            text_to_speak = input("Enter what you want me to speak: ")  # Get user input
+
+            # Check for the exit condition (case-insensitive)
+            if text_to_speak.lower() == "exit":
+                speaker.say("Thank you for using Robo Speaker. Goodbye!")
+                speaker.runAndWait()
+                break  # Exit the infinite loop
+
+            else:
+                speaker.say(text_to_speak)
+                speaker.runAndWait()
 
